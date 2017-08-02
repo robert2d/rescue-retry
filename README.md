@@ -1,4 +1,4 @@
-# Rescue::Retry [![Build Status](https://travis-ci.org/robert2d/rescue-retry.svg?branch=master)](https://travis-ci.org/robert2d/rescue-retry)
+# Rescue::Retry [![Build Status](https://travis-ci.org/robert2d/rescue-retry.svg?branch=master)](https://travis-ci.org/robert2d/rescue-retry) [![Coverage Status](https://coveralls.io/repos/github/robert2d/rescue-retry/badge.svg?branch=master)](https://coveralls.io/github/robert2d/rescue-retry?branch=master)
 
 Wraps a instance method in a configurable retry handler with additional/optional delay logic as well.
 
