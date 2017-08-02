@@ -1,8 +1,6 @@
 # Rescue::Retry
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/rescue/retry`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+Wraps a instance method in a configurable retry handler with additional/optional delay logic as well.
 
 ## Installation
 
@@ -22,7 +20,29 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+```ruby
+require 'rescue/retry'
+
+class StateCache
+    extend Rescue::Retry
+
+    # Simple
+    rescue_retry :retrieve, Redis::CannotConnectError
+
+    # Verbose
+    rescue_retry :update, [Redis::CannotConnectError, ArgumentError],
+                  max_attempts: 5, # optional
+                  delay: :exponential # optional: :linear, :random
+
+    def retrieve
+      redis.get(key)
+    end
+
+    def update(data)
+      redis.set(key, data)
+    end
+end
+```
 
 ## Development
 
@@ -32,5 +52,5 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/rescue-retry.
+Bug reports and pull requests are welcome on GitHub at https://github.com/[robert2d]/rescue-retry.
 
