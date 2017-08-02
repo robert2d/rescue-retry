@@ -1,4 +1,4 @@
-# Rescue::Retry
+# Rescue::Retry [![Build Status](https://travis-ci.org/robert2d/rescue-retry.svg?branch=master)](https://travis-ci.org/robert2d/rescue-retry)
 
 Wraps a instance method in a configurable retry handler with additional/optional delay logic as well.
 
@@ -52,5 +52,5 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[robert2d]/rescue-retry.
+Bug reports and pull requests are welcome on GitHub at https://github.com/robert2d/rescue-retry.
 
