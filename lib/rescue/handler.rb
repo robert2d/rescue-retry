@@ -15,8 +15,8 @@ module Rescue
     def call(&block)
       block.call
     rescue *errors => e
-      logger.warn "Failed attempt (#{attempt} of #{max_attempts}) #<#{e.class.name}.#{e.message}>"
-      re_raise(e) if max_attempts?
+      log_attempt(e)
+      raise if max_attempts?
       @attempt += 1
       sleep delay_retry(attempt) unless delay == :none
       retry
@@ -31,9 +31,9 @@ module Rescue
       raise ArgumentError, "unknown delay \"#{delay}\". accepts: :exponential, :linear and :random"
     end
 
-    def re_raise(error)
+    def log_attempt(e)
+      logger.warn "Failed attempt (#{attempt} of #{max_attempts}) #<#{e.class.name}.#{e.message}>"
       logger.error "maximum attempts (#{max_attempts}) reached"
-      raise error.class, error.message
     end
 
     def max_attempts?
