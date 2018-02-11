@@ -33,7 +33,7 @@ module Rescue
 
     def log_attempt(e)
       logger.warn "Failed attempt (#{attempt} of #{max_attempts}) #<#{e.class.name}.#{e.message}>"
-      logger.error "maximum attempts (#{max_attempts}) reached"
+      logger.error "maximum attempts (#{max_attempts}) reached" if max_attempts?
     end
 
     def max_attempts?
